@@ -1,45 +1,59 @@
-DROP TABLE WANTED;
-CREATE TABLE WANTED (
-    WANTED_THUMBNAIL       NUMBER                     NULL,   /* ΩÊ≥◊¿œ ¿÷¿∏∏È 1, æ¯¿∏∏È 0 */
-    WANTED_NO                   NUMBER                     NULL,
-    WANTED_TITLE                 VARCHAR2(100 BYTE)  NULL,
-    WANTED_CONTENT          VARCHAR2(100 BYTE)   NULL,
-    WANTED_DATE                TIMESTAMP                  NULL,
-    WANTED_PRICE                NUMBER                      NULL
-);
-
-DROP TABLE PERSON;
-CREATE TABLE PERSON (
-    PER_ID                  VARCHAR2(20 BYTE)               NULL,
-    PER_PW                 VARCHAR2(20 BYTE)              NULL,
-    PER_NAME              VARCHAR2(20 BYTE)             NULL,
-    PER_ADDRESS         VARCHAR2(100 BYTE)            NULL,
-    PER_DETAILADDRESS VARCHAR2(100 BYTE)          NULL,
-    PER_EMAIL               VARCHAR2(20 BYTE)            NULL,
-    PER_GENDER             NUMBER                            NULL
-);
-
-DROP TABLE FOOD;
-CREATE TABLE FOOD (
-    FD_NO               NUMBER                        NULL,
-    FD_WRITER         VARCHAR2(20 BYTE)       NULL,
-    FD_TITLE             VARCHAR2(100 BYTE)     NULL,
-    FD_TOOL            VARCHAR2(1000 BYTE)    NULL,       /*¿Á∑·*/
-    FD_CONTENT1     VARCHAR2(200 BYTE)     NULL,
-    FD_CONTENT2     CLOB                             NULL,
-    FD_REPLY            VARCHAR2(1000 BYTE)    NULL,     /*¥Ò±€*/
-    FD_DATE             TIMESTAMP                    NULL,
-    FD_EDIT              TIMESTAMP                    NULL      /*ºˆ¡§¿œ*/
-);
-
 DROP TABLE QNA;
-CREATE TABLE QNA(
-    QNA_NO            NUMBER                        NULL,
-    QNA_TITLE          VARCHAR2(100 BYTE)     NULL,
-    QNA_CONTENT   CLOB                             NULL,
-    QNA_WRITER      VARCHAR2(30 BYTE)       NULL,
-    QNA_DATE          TIMESTAMP                   NULL,
-    QNA_REPLY          VARCHAR2(1000 BYTE)  NULL
+DROP TABLE FOOD;
+DROP TABLE PERSON;
+DROP TABLE WANTED;
+
+CREATE TABLE WANTED (
+    WANTED_NO              NUMBER                     PRIMARY KEY,
+    WANTED_TITLE           VARCHAR2(100 BYTE)         NULL,
+    WANTED_CONTENT         VARCHAR2(100 BYTE)         NULL,
+    WANTED_DATE            TIMESTAMP                  NULL,
+    WANTED_PRICE           NUMBER                     NULL,
+    WANTED_THUMBNAIL       NUMBER                     NULL  -- Ïç∏ÎÑ§Ïùº ÏûàÏúºÎ©¥ 1, ÏóÜÏúºÎ©¥ 0 
 );
+
+CREATE TABLE PERSON (
+    PER_ID                 VARCHAR2(20 BYTE)          PRIMARY KEY,
+    PER_PW                 VARCHAR2(20 BYTE)          NOT NULL,
+    PER_NAME               VARCHAR2(20 BYTE)          NOT NULL,
+    PER_PHONENO            NUMBER                     NOT NULL,
+    PER_POSTADDRESS        VARCHAR2(5 BYTE)           NULL,
+    PER_ROADADDRESS        VARCHAR2(100 BYTE)         NULL,
+    PER_JIBUNADDRESS       VARCHAR2(100 BYTE)         NULL,
+    PER_DETAILADDRESS      VARCHAR2(100 BYTE)         NOT NULL,
+    PER_EMAIL              VARCHAR2(20 BYTE)          NOT NULL,
+    PER_GENDER             NUMBER                     NOT NULL
+);
+
+CREATE TABLE FOOD (
+    FD_NO                  NUMBER                     PRIMARY KEY,
+    FD_TITLE               VARCHAR2(100 BYTE)         NOT NULL,
+    FD_TOOL                VARCHAR2(1000 BYTE)        NULL,       -- Ïû¨Î£å
+    FD_CONTENT1            VARCHAR2(200 BYTE)         NULL,
+    FD_CONTENT2            CLOB                       NOT NULL,
+    FD_REPLY               VARCHAR2(1000 BYTE)        NOT NULL,   -- ÎåìÍ∏Ä
+    FD_DATE                TIMESTAMP                  NULL,
+    FD_EDIT                TIMESTAMP                  NULL,       -- ÏàòÏ†ïÏùº
+    FD_WRITER              VARCHAR2(20 BYTE)          NOT NULL,
+    CONSTRAINT FK_FD_WRITER FOREIGN KEY(FD_WRITER) REFERENCES PERSON(PER_ID)
+);
+
+
+CREATE TABLE QNA(
+    QNA_NO                 NUMBER                    PRIMARY KEY,
+    QNA_TITLE              VARCHAR2(100 BYTE)        NOT NULL,
+    QNA_CONTENT            CLOB                      NOT NULL,
+    QNA_ID                 VARCHAR2(20 BYTE)         NOT NULL,
+    QNA_DATE               TIMESTAMP                 NULL,
+    QNA_REPLY              VARCHAR2(1000 BYTE)       NOT NULL,
+    CONSTRAINT FK_QNA_ID FOREIGN KEY(QNA_ID) REFERENCES PERSON(PER_ID)
+);
+
+DROP SEQUENCE FOOD_SEQ;
+CREATE SEQUENCE FOOD_SEQ NOCACHE;
+DROP SEQUENCE PERSON_SEQ;
+CREATE SEQUENCE PERSON_SEQ NOCACHE;
+DROP SEQUENCE QNA_SEQ;
+CREATE SEQUENCE QNA_SEQ NOCACHE;
 
 
