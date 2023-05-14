@@ -4,8 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace는 @Mapper를 지정 한다.-->
-<mapper namespace="com.gdu.semi.mapper.nocontent">
-
+<mapper namespace="com.gdu.semi.mapper.QnaMapper">
+	<select id="getQnaList" resultType="QnaDTO">
+		SELECT QNA_NO, QNA_TITLE, QNA_ID, QNA_DATE
+		  FROM QNA
+		 ORDER BY QNA_NO DESC
+	</select>
 	
-
 </mapper>
