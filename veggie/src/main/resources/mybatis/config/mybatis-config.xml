@@ -14,6 +14,7 @@
 	  <typeAliases>
   		  <typeAlias alias="DetailDTO" type="com.gdu.semi.domain.DetailDTO" />
   		  <typeAlias alias="QnaDTO" type="com.gdu.semi.domain.QnaDTO" />
+  		  <typeAlias alias="PersonDTO" type="com.gdu.semi.domain.PersonDTO" />
 	  </typeAliases>
   	  
 </configuration>

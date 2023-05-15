@@ -12,14 +12,12 @@
 <script src="${contextPath}/resources/js/lib/jquery-3.6.4.min.js"></script>
 <script>
 	$(function() {
-		$('#phoneNoMsg').hide();
-		
-
+		// 비밀번호 테스트
+		// 숫자, 영문, 특수기호 포함 8글자 이상
+		var pwTest = /^[0-9a-z!@#$%^&?]{8,}$/
+		var pwValidate = false;
 		$('#perPw2').keyup(function(event) {
 			
-			// 비밀번호 테스트
-			var pwTest = /^[0-9a-z!@#$%^&?]{8,}$/
-			var pwValidate = false;
 			if(pwTest.test($('#perPw1').val()) == true && pwTest.test($('#perPw2').val()) == true){
 				$('#pw_msg').text('')
 				$('#pw_msg').removeClass('pw_fail');
@@ -28,6 +26,8 @@
 				pwValidate = true;
 				
 				if ($('#perPw1').val() != $('#perPw2').val()) {
+					$('#perPw2').css('margin-bottom', '0px');
+					$('#pw_msg').css('margin', '10px 0px 10px 0px');
 					$('#pw_msg').text('비밀번호가 일치하지 않습니다.')
 					$('#pw_msg').removeClass('pw_fail');
 					$('#pw_msg').removeClass('pw_success');
@@ -35,6 +35,8 @@
 					pwValidate = false;
 				}
 			} else if (pwTest.test($('#perPw1').val()) != true) {
+					$('#perPw1').css('margin-bottom', '0px');
+					$('#pw_msg').css('margin', '10px 0px 10px 0px');
 					$('#pw_msg').text('비밀번호는 영문, 숫자, 특수기호를 혼합하여 8자 이상 가능합니다.')
 					$('#pw_msg').removeClass('pw_success');
 					$('#pw_msg').removeClass('pw_init');
@@ -43,25 +45,44 @@
 			}
 			
 		})
+		// 핸드폰 번호 검사
+		var phoneNoTest = /^010-[0-9]{4}-[0-9]{4}$/
+		var phoneValidate = false;
+		$('#perPhoneNo').keyup(function(event) {
+			if(phoneNoTest.test($('#perPhoneNo').val()) != true){
+				$('#perPhoneNo').css('margin-bottom', '0px');
+				$('#phone_msg').text('핸드폰 번호를 확인해주세요.');
+				$('#phone_msg').css('margin', '10px 0px 10px 0px');
+				$('#phone_msg').removeClass('id_success');
+				$('#phone_msg').removeClass('id_init');
+				$('#phone_msg').addClass('id_fail');
+				var phoneValidate = false;
+			} else {
+				$('#phone_msg').text('');
+				$('#phone_msg').removeClass('id_success');
+				$('#phone_msg').removeClass('id_init');
+				$('#phone_msg').addClass('id_success');
+				var phoneValidate = true;
+
+			}
+		})
+		
 	})
-	
+	// 돌아가기 버튼 눌렀을 때 뒤로 감
 	function fnBack() {
 		hitory.back();
 	}
-	let inputPhone = document.getElementById("perPhoneNo").value
-	let phoneFormat = /^010-[0-9]{4}-[0-9]{4}$/
-	if(phoneFormat.test(intputPhone) == false){
-		$('#phoneNoMsg').show();
-	}
-
 
 </script>
 <!-- 클래스는 . 아이디는 # -->
 <style type="text/css">
-	
-	/* 비밀번호 일치시, 불일치시 보이게 */
-	.pwright .pwwrong {
-		visibility: hidden;
+	.box {
+		position: absolute;
+		width: 600px;
+		left: calc(50% - 600px/2);
+		top: 210px;
+		background: #F4F4F4;
+		border-radius: 59px;
 	}
 	
 	h1 {
@@ -73,12 +94,13 @@
 		justify-content: center;
 	}
 	input {
-		width : 300px;
+		width : 410px;
 		border: none;
 		border-bottom: 1px solid black;
 		padding-top: 20px;
 		margin-bottom: 20px;
 		outline: none;
+		background-color: transparent;
 	}
 	input[type="radio"] {
 		width: 40px;
@@ -96,9 +118,13 @@
 	.fnBack {
 		text-align: center;
 	}
+	/* 로그인 관련  */
+	#pw_msg, #id_msg, #phone_msg {
+		color : red;
+	}
 </style>
 <body>
-
+	<div class="box">
 	<div>
 		<h1>회원정보수정</h1>	
 	</div>
@@ -111,10 +137,10 @@
 			<input type="text" name="perId" id="perId" readonly="readonly" placeholder="아이디는 변경이 불가능합니다.">
 			<div>이메일</div>
 			<!-- DB수정 필요 -->
-			<input type="text" name="perEmail1" readonly="readonly">
+			<input type="text" name="perEmail1" placeholder="이메일은 변경이 불가능합니다.">
 			<div>핸드폰번호</div>
 			<input type="text" id="perPhoneNo" name="perPhoneNo">
-			<div id="phoneNoMsg">정확한 핸드폰 번호를 입력해주세요</div>
+			<div id="phone_msg"></div>
 			<div>비밀번호</div>
 			<input type="password" name="perPw" id="perPw1" placeholder="●●●●">
 			<div>비밀번호 확인</div>
@@ -144,5 +170,6 @@
 			</div>
 		</div>
 	</form>
+	</div>
 </body>
 </html>
