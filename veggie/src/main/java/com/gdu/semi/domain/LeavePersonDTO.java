@@ -7,13 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class QnaDTO {
-	private int qnaNo;
-	private String title;
-	private String content;
+@NoArgsConstructor
+public class LeavePersonDTO {
 	private String id;
-	private Date writeAt;
-	private String qnaReply;
+	private String email;
+	private Date joinedAt;
+	private Date leaveAt;
 }

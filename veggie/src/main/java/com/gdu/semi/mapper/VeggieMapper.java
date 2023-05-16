@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gdu.semi.domain.QnaDTO;
 
 @Mapper
-public interface QnaMapper {
+public interface VeggieMapper {
+	
+	// Person
+	
+	// Qna
 	public List<QnaDTO> getQnaList();
 
 }
