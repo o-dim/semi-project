@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDTO {
+public class SleepPersonDTO {
 	private int perNo;
 	private String id;
 	private String pw;
@@ -23,4 +23,5 @@ public class PersonDTO {
 	private String gender;
 	private int aggreecode;
 	private Date joinedAt;
+	private Date sleptAt;
 }
