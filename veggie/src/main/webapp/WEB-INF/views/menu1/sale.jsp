@@ -35,6 +35,7 @@
 		  color: black;
 		  background: white;
 		  display: flex;
+		   font-size : 32px;
 		  justify-content: space-between;
 		  align-items: center;
 		  border-bottom: 20px solid #facc57;
@@ -47,11 +48,21 @@
 		font-family: 'Tenada';
 	}
 	
-	a {
-  		color: black;
-  		text-decoration : none;
+	button {
+      margin-left: 10px;
+      font-size: 16px;
+      background-color: transparent;
+      border: none;
+   }
+	
+	.logo {
+		margin-bottom: -10px;
 	}
 	
+	.logo_img {
+		margin-right: 730px;
+	
+	}
 	
 	body {
 		padding-top: 100px;
@@ -65,36 +76,44 @@
 		
 	}
 	
-	img {
-	
-	margin-right: 30px;
-	margin-left: 30px;
-	
-	
+	.product-list {
+	 	width: 1200px;
+	 	margin-left: auto;
+	 	margin-right: auto;
+	 
 	}
 	
-	#logo > img {
-		display: block;
-		vertical-align: top;
-		margin: 30px;
+	.product {
+	 	width: 380px;
+	 	text-align: center;
+	 	display: block;
+	 	float: left;
+	 	margin-left: 10px;
+	 	margin-right: 10px;
+	 	text-decoration: none;
+	 	color: black;
 	}
 	
-	.wanted   {
-		overflow : hidden;
-		margin-top: 20px;
-		margin-bottom: 20px;
-		margin-right: 20px;
+	.product-name {
+	 	margin-top: 20px;
+	 	margin-bottom: 4px;
 	}
-	.wanted > div {
-		width: 200px;
-		height: 200px;
-		text-align: center; 
-		padding-top: 120px;
-		float: left;
+	
+	.product-price {
+	 	margin-top: 4px;
+	 	margin-bottom: 20px;
 	}
-
 	
-	
+	 footer {
+           height: 150px;
+           margin-top: 10px;
+           background-color: #facc57;
+       }
+       
+       footer > p {
+           text-align: center;
+           line-height: 150px;
+       }
 
 </style>
 
@@ -104,42 +123,74 @@
 <header>
 
 	<div class="logo">
-	<h2>야채단속반<img src="${contextPath}/resources/images/main.png" width="400px"></h2>
+	야채단속반
 	</div>
-	<nav>
-		<span><a href="javascrips:void(0)">로그인</a></span>
-		<span><a href="javascrips:void(0)">회원가입</a></span>
-		<span><a href="javascrips:void(0)">메뉴1</a></span>
-		<span><a href="javascrips:void(0)">메뉴2</a></span>
-		<span><a href="javascrips:void(0)">메뉴3</a></span>
-	</nav>
+	<div class="logo_img">
+	<img src="${contextPath}/resources/images/logo.png" width="250px">	
+	</div>
+
+ <div><form method="post">
+   <button>메뉴</button>
+   <button>메뉴2</button>
+   <button>메뉴2</button>
+   <button>로그인</button>
+   <button>회원가입</button>
+</form></div>
+
 </header>
 
 
 	<h2 align="center">WANTED</h2>
-	<div class="wanted">
-		<img src="${contextPath}/resources/images/v_01.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_02.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_03.png" width=300 height=300>
-	</div>
-
-	<div class="wanted">
-		<img src="${contextPath}/resources/images/v_05.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_06.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_09.png" width=300 height=300>
-	</div>
+	<div class="product-list">
 	
-	<div class="wanted">
-		<img src="${contextPath}/resources/images/v_21.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_27.png" width=300 height=300>
-		<img src="${contextPath}/resources/images/v_32.png" width=300 height=300>
-	</div>
-	<div class="loading_wrap">
-		<div class="loading"></div>
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_01.png" width="380">
+			<div class = "product-name">싸움고수</div>
+			<div class="product-price">15,000</div>
+		
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_02.png" width="380">
+			<div class = "product-name">깻잎</div>
+			<div class="product-price">12,000</div>
+		
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_03.png" width="380">
+			<div class = "product-name">땅땅콩콩</div>
+			<div class="product-price">10,000</div>
+
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_05.png" width="380">
+			<div class = "product-name">양배추</div>
+			<div class="product-price">12,000</div>
+		
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_06.png" width="380" height="285">
+			<div class = "product-name">양배추쪼개면방울양배추</div>
+			<div class="product-price">12,000</div>
+		
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_09.png" width="380">
+			<div class = "product-name">맛좋은오이</div>
+			<div class="product-price">5,000</div>
+			
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_21.png" width="380"> 
+			<div class = "product-name">아슷파라거슷</div>
+			<div class="product-price">5,000</div>
+			
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_27.png" width="380">
+			<div class = "product-name">사랑의콩깍지</div>
+			<div class="product-price">5,000</div>
+		
+		<a href="#" class ="product">
+			<img src="${contextPath}/resources/images/v_28.png" width="380">
+			<div class = "product-name">양파쿵야</div>
+			<div class="product-price">7,000</div>
+		
 	</div>
 <footer>
-
-
+         <p>footer area</p>
 </footer>
 </body>
 </html>
