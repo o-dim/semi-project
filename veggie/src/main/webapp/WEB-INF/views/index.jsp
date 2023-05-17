@@ -18,5 +18,7 @@
 	<a href="${contextPath}/qna/list.do">qna list</a>
 	<a href="${contextPath}/person/login.do">login</a>
 	<a href="${contextPath}/person/edit.do">edit</a>
+	<a href="${contextPath}/menu1/sale.do">sale</a>
+	<a href="${contextPath}/order/arrest.do">arrest</a>
 </body>
 </html>
